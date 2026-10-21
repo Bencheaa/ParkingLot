@@ -8,8 +8,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item"><a class="nav-link ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/"))
-eq '/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/")) eq '/about.jsp' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/about.jsp">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.requestURI.substring(pageContext.request.requestURI.lastIndexOf("/")) eq '/Cars' or pageContext.request.requestURI.endsWith('/cars.jsp') ? ' active' : ''}" href="${pageContext.request.contextPath}/Cars">Cars</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
                     <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
                 </ul>
