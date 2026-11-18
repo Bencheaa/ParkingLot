@@ -53,14 +53,16 @@ public class CarsBean {
     public boolean updateCar(Long carId, String licensePlate, String parkingSpot, Long userId) {
         LOG.info("updateCar");
         Cars car = entityManager.find(Cars.class, carId);
-        User owner = entityManager.find(User.class, userId);
-        if (car == null || owner == null) {
-            return false;
-        }
-
         car.setLicensePlate(licensePlate);
         car.setParkingSpot(parkingSpot);
-        car.setOwner(owner);
+
+        User oldUser=car.getOwner();
+        oldUser.getCars().remove(car);
+
+        User user=entityManager.find(User.class, userId);
+        user.getCars().add(car);
+        car.setOwner(user);
+
         return true;
     }
 
